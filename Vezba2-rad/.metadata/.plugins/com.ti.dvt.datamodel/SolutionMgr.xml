@@ -5,7 +5,7 @@
    <string>defaultSolution</string>
    <void method="set">
     <object idref="SolutionManager$PersistState0"/>
-    <string>C:\materija\RA47-2014\DSP2\Vezba2-rad\dvt\AnalysisSolutionsTemp\AnalysisSolution1490176801635\null</string>
+    <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\CodeGen\solutions\CodeGenCoverage</string>
    </void>
   </void>
  </object>
@@ -14,13 +14,19 @@
  <void id="ArrayList0" method="get">
   <object idref="SolutionManager$PersistState0"/>
   <void method="add">
-   <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\FunctionProfile\solutions\null - FunctionProfile</string>
+   <string>C:\materija\RA47-2014\New folder\DSP2\Vezba2-rad\dvt\AnalysisSolutionsTemp\AnalysisSolution1490177285574\null</string>
   </void>
   <void method="add">
-   <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\FunctionProfile\solutions\null - CoverageProfile</string>
+   <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\CCSgraphs\solutions\SingleTime\singletime</string>
   </void>
   <void method="add">
-   <string>C:\materija\RA47-2014\DSP2\Vezba2-rad\dvt\AnalysisSolutionsTemp\AnalysisSolution1490176801635\null</string>
+   <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\CCSgraphs\solutions\FFTMagnitude\fftMagnitude</string>
+  </void>
+  <void method="add">
+   <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\CCSgraphs\solutions\FFTMagnitude\fftMagnitude</string>
+  </void>
+  <void method="add">
+   <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\CCSgraphs\solutions\SingleTime\singletime</string>
   </void>
   <void method="add">
    <string>C:\ti\ccsv6\ccs_base\dvt_4.0.0.201501151820\CodeGen\solutions\CodeGenCoverage</string>
