@@ -1,0 +1,17 @@
+
+**** Build of configuration Debug for project Zadatak1 ****
+
+"C:\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
+'Building file: ../fir.c'
+'Invoking: C5500 Compiler'
+"C:/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=large -g --include_path="C:/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/materija/RA47-2014/DSP2/Vezba1-rad/Zadatak1/c55xx_csl/inc" --include_path="C:/materija/RA47-2014/DSP2/Vezba1-rad/Zadatak1/include" --define=c5535 --diag_warning=225 --ptrdiff_size=16 --preproc_with_compile --preproc_dependency="fir.pp"  "../fir.c"
+'Finished building: ../fir.c'
+' '
+'Building target: Zadatak1.out'
+'Invoking: C5500 Linker'
+"C:/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=large -g --define=c5535 --diag_warning=225 --ptrdiff_size=16 -z -m"Zadatak1.map" --stack_size=0x200 --heap_size=0x400 -i"C:/ti/ccsv6/tools/compiler/c5500_4.4.1/lib" -i"C:/ti/ccsv6/tools/compiler/c5500_4.4.1/include" -i"C:/materija/RA47-2014/DSP2/Vezba1-rad/Zadatak1/c55xx_csl/lib" -i"C:/materija/RA47-2014/DSP2/Vezba1-rad/Zadatak1/lib" --reread_libs --warn_sections --xml_link_info="vezba-ezdsp_linkInfo.xml" --rom_model --sys_stacksize=0x200 -o "Zadatak1.out" "./filter_coeff.obj" "./fir.obj" "./main.obj" "./processing.obj" "./signal.obj" "../lnkx.cmd" "../lib/ezdsp5535bsl.lib" "../c55xx_csl/lib/cslVC5505.lib"  -l"rts55x.lib" -l"ezdsp5535bsl.lib" -l"cslVC5505.lib" -l"libc.a" 
+<Linking>
+'Finished building target: Zadatak1.out'
+' '
+
+**** Build Finished ****
