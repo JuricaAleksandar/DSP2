@@ -22,20 +22,35 @@ void calculatePeekCoeff(float c_alpha, float c_beta, Int16* output)
 Int16 shelvingHP(Int16 input, Int16* coef, Int16* z_x, Int16* z_y, Int16 k)
 {
 	Int16 filtered=first_order_IIR(input, coef,z_x,z_y);
-	Int32 Output=(Int32)_smpy((filtered+input),k)+((input-filtered)>>1);
-	return (Int16)Output;
+	Int32 Output=((Int32)filtered+input)*k+((input-filtered)>>1);
+	if (Output>=32767)
+		return 32767;
+	else if (Output<=-32768)
+		return -32768;
+	else
+		return (Int16)Output;
 }
 
 Int16 shelvingLP(Int16 input, Int16* coeff, Int16* z_x, Int16* z_y, Int16 k)
 {
 	Int16 filtered=first_order_IIR(input, coeff,z_x,z_y);
 	Int32 Output=(((Int32)filtered+input)>>1)+_smpy((input-filtered),k);
-	return (Int16)Output;
+	if (Output>=32767)
+		return 32767;
+	else if (Output<=-32768)
+		return -32768;
+	else
+		return (Int16)Output;
 }
 
 Int16 shelvingPeek(Int16 input, Int16* coeff, Int16* z_x, Int16* z_y, Int16 k)
 {
 	Int16 filtered=second_order_IIR(input, coeff, z_x, z_y);
 	Int32 Output=(((Int32)filtered+input)>>1)+(Int32)_smpy((input-filtered),k);
-	return (Int16)Output;
+	if (Output>=32767)
+		return 32767;
+	else if (Output<=-32768)
+		return -32768;
+	else
+		return (Int16)Output;
 }

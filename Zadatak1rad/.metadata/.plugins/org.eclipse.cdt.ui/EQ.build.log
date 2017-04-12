@@ -5,7 +5,7 @@
 'Building file: ../main.c'
 'Invoking: C5500 Compiler'
 "C:/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=large -g --include_path="C:/ti/ccsv6/tools/compiler/c5500_4.4.1/include" --include_path="C:/materija/RA47-2014/New folder/DSP2/Zadatak1rad/EQ/c55xx_csl/inc" --include_path="C:/materija/RA47-2014/New folder/DSP2/Zadatak1rad/EQ/include" --define=c5535 --diag_warning=225 --ptrdiff_size=16 --preproc_with_compile --preproc_dependency="main.pp"  "../main.c"
-"../main.c", line 91: warning: statement is unreachable
+"../main.c", line 114: warning: statement is unreachable
 'Finished building: ../main.c'
 ' '
 'Building target: EQ.out'

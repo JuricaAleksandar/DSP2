@@ -23,7 +23,7 @@
 #include "processing.h"
 
 /* Frekvencija odabiranja */
-#define SAMPLE_RATE 8000L
+#define SAMPLE_RATE 16000L
 
 #define PI 3.14159265
 
@@ -32,13 +32,20 @@
 Int16 sampleBufferL[AUDIO_IO_SIZE];
 #pragma DATA_ALIGN(sampleBufferR,4)
 Int16 sampleBufferR[AUDIO_IO_SIZE];
-short tempBuff[128];
+
 Int16 lp_coeffs[4];
 Int16 hp_coeffs[4];
-Int16 sh_coeffs[6];
-Int16 z_x[3];
-Int16 z_y[3];
-
+Int16 sh1_coeffs[6];
+Int16 sh2_coeffs[6];
+Int16 z_x_lp[2];
+Int16 z_y_lp[2];
+Int16 z_x_hp[2];
+Int16 z_y_hp[2];
+Int16 z_x_peek1[3];
+Int16 z_y_peek1[3];
+Int16 z_x_peek2[3];
+Int16 z_y_peek2[3];
+Int16 k[4]={4096,8192,16384,32767};
 void main( void )
 {   
 
@@ -64,25 +71,41 @@ void main( void )
     /* Postavljanje vrednosti frekvencije odabiranja i pojacanja na kodeku */
     set_sampling_frequency_and_gain(SAMPLE_RATE, 0);
     int i;
+    for(i=0;i<2;i++)
+    {
+    	z_x_lp[i]=0;
+    	z_y_lp[i]=0;
+    	z_x_hp[i]=0;
+    	z_y_hp[i]=0;
+    }
     for(i=0;i<3;i++)
     {
-    	z_x[i]=0;
-    	z_y[i]=0;
+    	z_x_peek1[i]=0;
+    	z_y_peek1[i]=0;
+    	z_x_peek2[i]=0;
+    	z_y_peek2[i]=0;
     }
-    calculateShelvingCoeff(0.3,lp_coeffs);
-    calculateShelvingCoeff(-0.3,hp_coeffs);
-    calculatePeekCoeff(0.7,0.0,sh_coeffs);
+    calculateShelvingCoeff(-0.38268,hp_coeffs);
+    calculateShelvingCoeff(0.99627,lp_coeffs);
+    calculatePeekCoeff(0.99906,0.97922,sh1_coeffs);
+    calculatePeekCoeff(0.86174,0.41687,sh2_coeffs);
 
     while(1)
     {
     	aic3204_read_block(sampleBufferL, sampleBufferR);
 
-        for(i=1;i<AUDIO_IO_SIZE;i++)
-        	sampleBufferL[i]=0;
-        sampleBufferL[0]=10000;
-        for(i=0;i<AUDIO_IO_SIZE;i++)
-        	sampleBufferR[i]=shelvingPeek(sampleBufferL[i], sh_coeffs, z_x, z_y, 32767 );
-
+    	sampleBufferR[0]=10000;
+    	for(i=1;i<AUDIO_IO_SIZE;i++)
+    	{
+    		sampleBufferR[i]=0;
+    	}
+    	for(i=0;i<AUDIO_IO_SIZE;i++)
+    	{
+    	sampleBufferR[i]=shelvingLP(sampleBufferR[i],lp_coeffs,z_x_lp,z_y_lp,16384);
+    	sampleBufferR[i]=shelvingHP(sampleBufferR[i],hp_coeffs,z_x_hp,z_y_hp,32767);
+    	sampleBufferR[i]=shelvingPeek(sampleBufferR[i], sh1_coeffs, z_x_peek1 , z_y_peek1,16384);
+		sampleBufferR[i]=shelvingPeek(sampleBufferR[i],sh2_coeffs, z_x_peek2, z_y_peek2 ,16384);
+    	}
 		aic3204_write_block(sampleBufferR, sampleBufferR);
 	}
 
